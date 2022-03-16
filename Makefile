@@ -1,3 +1,5 @@
+@ # :)
+
 all:
 	cd kernel/; rm -rf limine 2> /dev/null; make clean; bash buildall.sh
 	cd kernel/; bash build.sh; mv NekoOS.iso ../
