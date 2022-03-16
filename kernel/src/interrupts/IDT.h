@@ -4,6 +4,9 @@
 #define TRAP_GATE_FLAGS 0x8F
 #define INT_GATE_FLAGS 0x8E
 
+#include <stdint.h>
+
+
 /*
  *  This file will hold the IDT or 
  *  interrupt descriptor table.
