@@ -2,8 +2,8 @@
 #include <stddef.h>
 #include "../stivale2.h"
 
+// Kernel stack, this will be allocated in BSS.
 static uint8_t kernel_stack[8000];
-
 
 
 void* get_tag(struct stivale2_struct* stivale2_struct, uint64_t id) {
@@ -24,6 +24,7 @@ void* get_tag(struct stivale2_struct* stivale2_struct, uint64_t id) {
 }
 
 
+// Terminal tag.
 static struct stivale2_header_tag_terminal terminal_tag = {
     .tag = {
         .identifier = STIVALE2_HEADER_TAG_TERMINAL_ID,
@@ -34,6 +35,7 @@ static struct stivale2_header_tag_terminal terminal_tag = {
 };
 
 
+// Framebuffer tag.
 static struct stivale2_header_tag_framebuffer lfb_tag = {
     .tag = {
         .identifier = STIVALE2_HEADER_TAG_FRAMEBUFFER_ID,
@@ -46,6 +48,7 @@ static struct stivale2_header_tag_framebuffer lfb_tag = {
 };
 
 
+// This will be a header inside the ELF.
 __attribute__((section(".stivale2hdr"), used)) static struct stivale2_header stivale_hdr = {
     .entry_point = 0,
     .stack = (uintptr_t)(kernel_stack + sizeof(kernel_stack)),
@@ -54,6 +57,7 @@ __attribute__((section(".stivale2hdr"), used)) static struct stivale2_header sti
 };
 
 
+// Kernels entry point.
 void _start(struct stivale2_struct* ss) {
     while (1) {
         __asm__ __volatile__("hlt");
