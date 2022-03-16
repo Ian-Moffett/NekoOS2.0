@@ -14,4 +14,4 @@ reset:
 
 
 run:
-	qemu-system-x86_64 -cdrom NekoOS.iso
+	qemu-system-x86_64 -cdrom NekoOS.iso -monitor stdio
